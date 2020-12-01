@@ -1,0 +1,66 @@
+ 
+ .cart {
+    display: flex;
+  }
+  .align-items-center
+  {
+      text-align: center;
+  }
+
+    .cart  .cart-left {
+      width: 60%;
+      height: calc(100vh - 300px);
+      overflow: auto;
+    }
+    .cart-right {
+        padding: 0 20px;
+        width: 40%;
+        margin: 0px 0;
+        border-radius: 10px;
+      }
+  
+    .checkout .checkout-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+    }
+      .checkout .checkout-header .checkout-header--name {
+        width: 200px;
+      }
+  
+      .checkout .checkout-header .checkout-header--category {
+        width: 50px
+      }
+      .checkout .checkout-header .checkout-header--items {
+        width: 50px
+      }
+  
+      .checkout .checkout-header .checkout-header--price {
+        width: 50px
+      }
+    
+      .movie-card {
+        display: inline-block;
+        vertical-align: top;
+        cursor: pointer;
+        width: 100%;
+        
+        padding: 0;
+      }
+      .main{
+        margin: 0px 20px;
+      }
+
+      mat-card-title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0px 10px;
+        margin-top: 10px;
+      }
+      
+      mat-card-content {
+          margin: 0px 10px;
+        padding: 10px;
+        text-align: left;
+      }

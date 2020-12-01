@@ -1,0 +1,54 @@
+<div class="main">
+  <br>
+  <div class="cart">
+    <div class="cart-left">
+      <mat-card class="movie-card">
+        <mat-card-title>Product details</mat-card-title>
+        <mat-card-content>
+          <div class="checkout">
+            <div class="checkout-header">
+              <div class="checkout-header--name"><b>Name</b></div>
+              <div class="checkout-header--category"><b>Category</b></div>
+              <div class="checkout-header--items"><b>Quantity</b></div>
+              <div class="checkout-header--price"><b>Price</b></div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="checkout-header" *ngFor="let data of ProductsList">
+              <div class="checkout-header--name">{{data.name}}</div>
+              <div class="checkout-header--category">{{data.category}}</div>
+              <div class="checkout-header--items">{{data.Cartqty}}</div>
+              <div class="checkout-header--price">{{(data.amount * data.Cartqty)  | currency :'₹'}}</div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="checkout-header">
+              <div class="checkout-header--name"><b>Total</b></div>
+              <div class="checkout-header--items"></div>
+              <div class="checkout-header--items"><b>Items ({{ProductsList.length}})</b></div>
+              <div class="checkout-header--price"><b>{{totalAmount | currency :'₹'}}</b></div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="cart-right">
+
+      <mat-card class="movie-card">
+        <mat-card-title>User details</mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <mat-list role="list">
+            <mat-list-item role="listitem"><b>Name: &nbsp; </b>{{userDetails?.username}}</mat-list-item>
+            <mat-list-item role="listitem"><b>Address:</b> &nbsp;{{userDetails?.address}}, {{userDetails?.city}}
+            </mat-list-item>
+            <mat-list-item role="listitem"><b>Payment ID: &nbsp; </b>{{userDetails?.upiId}}</mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div class="align-items-center">
+    <button mat-raised-button color="primary" (click)="openDialog()">Checkout
+    </button></div>
+  <br>
+  <br>
+</div>

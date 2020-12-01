@@ -1,0 +1,54 @@
+<div class="main ">
+  <br>
+
+  <h4>{{category}} List </h4>
+  <br>
+
+  <div class="row">
+
+    <div class="col-md-3" *ngFor="let product of ProductsList | paginate: { itemsPerPage: 4, currentPage: p }">
+      <br>
+      <mat-card class="movie-card">
+        <div routerLink="../productdetails/{{product.id}}/{{product.category}}" class="cursor-pointer">
+          <img *ngIf="product.image" mat-card-image src="{{product.image}}"
+            [alt]="product.name ? product.name : product.name">
+          <img *ngIf="!product.image" mat-card-image
+            src="http://www.catedrauamfujitsu.es/wp-content/themes/invicta/styles/images/defaults/no_photo.jpg"
+            class="movie-header-card" [alt]="product.name ? product.name : product.name">
+          <mat-card-content>
+            <mat-card-title matTooltip="{{product.name}}" [matTooltipPosition]="'above'">{{product.name}}
+            </mat-card-title>
+            <mat-card-subtitle>{{product.genre}}</mat-card-subtitle>
+            <strong style="color: #000;">Quantity Remaining:
+            </strong> <span
+              [ngClass]="product.quantity > 0 ?'':'soldout'">{{product.quantity > 0 ? product.quantity : 'Sold Out'}}
+            </span><br>
+            <strong style="color: #000;">Year Of Release: </strong>{{product.yearOfRelease}}
+          </mat-card-content>
+        </div>
+        <mat-card-actions>
+          <span class="left"><strong style="color: #000;">{{product.amount | currency:"₹"}}</strong>
+          </span>
+          <span class="right" ng-controller="ItemCtrl as ctrl">
+            <a placement="top" container="body" (click)="addToWishList(product)">
+              <i class="fa fa-heart fa-lg" *ngIf=product.inWishlist matTooltip="Remove from Wishlist"
+                [matTooltipPosition]="'above'"></i>
+              <i class="fa fa-heart-o fa-lg" *ngIf=!product.inWishlist matTooltip="Add to Wishlist"
+                [matTooltipPosition]="'above'"></i>
+            </a>
+            <a *ngIf=product.quantity placement="top" container="body" (click)="addToCart(product)">
+              <i class="fa fa-shopping-cart fa-lg" *ngIf=product.inCart matTooltip="Remove from Cart"
+                [matTooltipPosition]="'above'"></i>
+              <i class="fa fa-cart-plus fa-lg" aria-hidden="true" *ngIf=!product.inCart matTooltip="Add to Cart"
+                [matTooltipPosition]="'above'"></i>
+            </a>
+          </span>
+        </mat-card-actions>
+      </mat-card>
+      <br><br>
+    </div>
+  </div>
+  <br>
+  <pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
+
+</div>

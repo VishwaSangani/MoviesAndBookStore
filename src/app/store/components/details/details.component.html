@@ -1,0 +1,73 @@
+<div>
+  <div class="parrallax-content"
+    [ngStyle]="{'background-image': 'linear-gradient(rgba(52,41,49,0.80), rgba(0,0,0,0.85)), url('+ product.image + ')'}">
+
+    <div class="parallax-left-content">
+      <section class="parallax-position">
+        <div class="parallax-right-content">
+          <h2>{{product.name}}</h2>
+          <br>
+          <p>Description</p>
+          <p style="padding-right: 8px">{{product.description}}</p>
+          <div *ngIf="product.category == 'Movie'; else Book">
+            <button mat-raised-button color="accent" aria-label="Trailer" (click)="openDialog(product)">
+              <i class="fa fa-play-circle fa-lg" aria-hidden="true"></i> Watch Trailer</button>
+          </div>
+          <ng-template #Book>
+            <div>
+              <button mat-raised-button color="accent" aria-label="Preview" (click)="openBookDialog(product)">
+                Open Preview</button>
+            </div>
+          </ng-template>
+          <br>
+          <table>
+            <tr>
+              <td class="col-sm-2" style="width: 30%; padding-left: 0px;">Categories</td>
+              <td class="col-sm-2" style="width: 30%;">
+                {{product.category == "Movie" ? 'Imdb Ratings' : 'Goodreads Rating' }}</td>
+              <td class="col-sm-2" style="width: 30%;">Quantity Remaining</td>
+            </tr>
+            <tr class="blank_row">
+              <td colspan="3"></td>
+            </tr>
+            <tr>
+              <td class="col-sm-2" style="width: 30%; padding-left: 0px;">
+                <button mat-raised-button color="primary" class="disable-click"
+                  aria-label="Genres">{{product.genre}}</button>
+              </td>
+              <td class="col-sm-2" style="width: 30%;">
+                <button mat-raised-button color="primary" class="disable-click"
+                  aria-label="Ratings">{{product.category == "Movie" ? product.imdbRatings : product.goodreadsRatings }}{{product.category == "Movie" ? '/10' : '/5' }}</button>
+              </td>
+              <td class="col-sm-2" style="width: 30%;  padding-left: 25px;">
+                <button mat-raised-button [color]="product.quantity>0 ? 'primary' : 'warn'" class="disable-click"
+                  aria-label="Ratings">{{product.quantity > 0 ? product.quantity : 'Sold Out'}}</button>
+              </td>
+            </tr>
+          </table>
+          <br>
+          <p>{{product.category == "Movie" ? 'Director:' : 'Writer:' }} &nbsp;
+            {{product.category == "Movie" ? product.director : product.writer }} </p>
+          <p>{{product.category == "Movie" ? 'Cast:' : 'Pages:' }} &nbsp;
+            {{product.category == "Movie" ? product.cast : product.pages }} </p>
+        </div>
+
+        <div class="parallax-img-container">
+          <img src={{product.image}} alt="">
+          <div class="below-img">
+            <p><b>Release Date: </b> &nbsp; <span>{{product.releaseDate}}</span></p>
+            <p><b>Price: </b> &nbsp; <span>{{product.amount | currency:"₹"}}</span></p>
+
+          </div>
+          <div class="below-img">
+            <button mat-raised-button color="basic"
+              (click)="addToWishList(product)">{{product.inWishlist ? 'Remove from wishList' : 'Add to wishlist'}}
+            </button> &nbsp;
+            <button *ngIf=product.quantity mat-raised-button color="success" style="margin-top: 10px;"
+              (click)="addToCart(product)">{{product.inCart ? 'Remove from cart' : 'Add to cart'}}</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </div>

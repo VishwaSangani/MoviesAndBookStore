@@ -1,0 +1,170 @@
+<div class="main">
+  <br>
+
+  <div *ngIf="ProductsList.length; else empty">
+    <mat-horizontal-stepper [linear]="true" #stepper class="background-transparent">
+      <mat-step>
+        <ng-template matStepLabel>My cart</ng-template>
+        <div class="cart">
+          <div class="cart-left">
+
+            <div class="col-md-12">
+              <table class="table mt-4">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Sr. No.</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Author/Director</th>
+                    <th scope="col">Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr *ngFor="let product of ProductsList; let i = index">
+
+                    <td>{{i+1}}</td>
+                    <th scope="row">
+                      <img class="imageClass" [src]="product.image" />
+                    </th>
+                    <td>{{product.name}} <br>{{product.genre}} | {{product.category}}
+                      <br><br>{{product.amount | currency:"₹"}}
+                    </td>
+
+                    <td>{{product.category == "Movie" ? product.director : product.writer }} </td>
+                    <td>
+                      <mat-form-field class="counter">
+                        <button mat-button mat-icon-button matPrefix aria-label="Remove"
+                          (click)="DeletefromCart(product,i)" [ngSwitch]="product.Cartqty">
+                          <i *ngSwitchCase=1 class="fa fa-trash" aria-hidden="true"></i>
+                          <span *ngSwitchDefault class="material-icons">remove</span>
+                        </button>
+                        <input matInput type="text" class="input-size" [(ngModel)]="product.Cartqty"
+                          [readonly]="true" />
+                        <button mat-button mat-icon-button matSuffix aria-label="Add"
+                          (click)="IncrementCartItem(product)">
+                          <span class="material-icons">add</span>
+                        </button>
+                      </mat-form-field>
+                    </td>
+                  </tr>
+
+                </tbody>
+
+              </table>
+            </div>
+
+          </div>
+
+          <div class="cart-right">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+              <span class="text-muted">Price Details</span>
+              <span class="badge badge-primary badge-pill">{{ProductsList.length}}</span>
+            </h4>
+            <ul class="list-group mb-3">
+              <li class="list-group-item d-flex justify-content-between lh-condensed"
+                *ngFor="let product of ProductsList">
+                <div>
+                  <h6 class="my-0">{{product.name}} × {{product.Cartqty}}</h6>
+                </div>
+                <span class="text-muted">{{product.amount * product.Cartqty | currency:"₹"}}</span>
+              </li>
+              <hr>
+              <li class="list-group-item d-flex justify-content-between">
+                <span>Total (INR)</span>
+                <strong>{{totalAmount | currency:"₹" }}</strong>
+              </li>
+            </ul>
+            <div class="align-items-center">
+              <button color="primary" mat-raised-button matStepperNext>Next</button>
+            </div>
+          </div>
+        </div>
+      </mat-step>
+
+      <mat-step [stepControl]="userDetails">
+        <ng-template matStepLabel>Fill out your details</ng-template>
+        <form class="example-form" [formGroup]="userDetails">
+          <table class="example-full-width" cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Username</mat-label>
+                  <input matInput placeholder="Ex. Vishwa" formControlName="username">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Email id</mat-label>
+                  <input matInput placeholder="Ex. vishwa1234@gmail.com" formControlName="email">
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+
+          <p>
+            <mat-form-field class="example-full-width">
+              <mat-label>Address</mat-label>
+              <textarea matInput placeholder="Ex. 100 Main St" formControlName="address"></textarea>
+            </mat-form-field>
+          </p>
+
+          <table class="example-full-width" cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>City</mat-label>
+                  <input matInput placeholder="Ex. Ahmedabad" formControlName="city">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>State</mat-label>
+                  <input matInput placeholder="Ex. Gujarat" formControlName="street">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Country</mat-label>
+                  <input matInput placeholder="Ex. India" formControlName="country">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Postal Code</mat-label>
+                  <input matInput [type]="'number'" #postalCode maxlength="6" placeholder="Ex. 380001"
+                    formControlName="zipCode">
+
+                  <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+          <p>
+            <mat-form-field class="example-full-width">
+              <mat-label>Upi Id</mat-label>
+              <input matInput placeholder="Ex. 987XXXXXXX@upi" formControlName="upiId">
+            </mat-form-field>
+          </p>
+          <div>
+            <button mat-raised-button color="primary" mat-button (click)="saveDetails()">Next</button>
+          </div>
+        </form>
+      </mat-step>
+    </mat-horizontal-stepper>
+
+  </div>
+
+  <ng-template #empty>
+
+    <div id="home-header">
+      <div class="align-empty">
+        <button [routerLink]="['../catalog', {'category': 'Movie'}]" color="primary" mat-raised-button>Go to
+          Catalog</button>
+      </div>
+    </div>
+
+
+  </ng-template>
+
+</div>

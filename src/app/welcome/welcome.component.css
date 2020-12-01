@@ -1,0 +1,10 @@
+#home-header{
+    height: 700px;
+    background: linear-gradient(rgba(167, 149, 162, 0.8), rgba(26, 33, 74, 0.8)), url('/../../../assets/images/background-main.jpg') no-repeat bottom;
+    background-size: cover;
+  }
+
+h2{
+  padding-top: 20%;
+  text-align: center;
+}
