@@ -1,8 +1,20 @@
 <mat-sidenav-container class="main-container">
   <mat-sidenav #sidenav mode="over" [(opened)]="opened">
     <mat-nav-list>
-      <a mat-list-item routerLink="/cart" routerLinkActive="active" (click)="sidenav.close()">Cart</a>
-      <a mat-list-item routerLink="/wishlist" routerLinkActive="active" (click)="sidenav.close()">Wishlist</a>
+      <a
+        mat-list-item
+        routerLink="/cart"
+        routerLinkActive="active"
+        (click)="sidenav.close()"
+        >Cart</a
+      >
+      <a
+        mat-list-item
+        routerLink="/wishlist"
+        routerLinkActive="active"
+        (click)="sidenav.close()"
+        >Wishlist</a
+      >
     </mat-nav-list>
   </mat-sidenav>
 
@@ -10,32 +22,51 @@
     <header class="main-header">
       <div class="left">
         <div>
-          <span class="material-icons  cursor-pointer" (click)="sidenav.toggle()">menu</span>&nbsp; &nbsp;
+          <span class="material-icons cursor-pointer" (click)="sidenav.toggle()"
+            >menu</span
+          >&nbsp; &nbsp;
         </div>
         <div>
-          <a [routerLink]="['catalog', {'category': 'Movie'}]">Movies</a> &nbsp; &nbsp;
+          <a [routerLink]="['catalog', { category: 'Movie' }]">Movies</a> &nbsp;
+          &nbsp;
         </div>
         <div>
-          <a [routerLink]="['catalog', {'category': 'Book'}]">Books</a> &nbsp; &nbsp;
+          <a [routerLink]="['catalog', { category: 'Book' }]">Books</a> &nbsp;
+          &nbsp;
         </div>
       </div>
       <div class="right">
         <div>
-          <span style="outline: none;" class="material-icons cursor-pointer" matTooltip="WishList"
-            routerLink="/wishlist" [matTooltipPosition]="'above'" matBadge="{{productService.wishListCount}}"
-            matBadgeColor="warn"> <i class="fa fa-heart fa-lg"></i></span>
-        </div> &nbsp; &nbsp;&nbsp; &nbsp;
+          <span
+            style="outline: none"
+            class="material-icons cursor-pointer"
+            matTooltip="WishList"
+            routerLink="/wishlist"
+            [matTooltipPosition]="'above'"
+            matBadge="{{ productService.wishListCount }}"
+            matBadgeColor="warn"
+          >
+            <i class="fa fa-heart fa-lg"></i
+          ></span>
+        </div>
+        &nbsp; &nbsp;&nbsp; &nbsp;
         <div>
-          <span style="outline: none;" class="material-icons cursor-pointer" matTooltip="WishList" routerLink="/cart"
-            [matTooltipPosition]="'above'" matBadge="{{productService.cartCount}}" matBadgeColor="warn"> <i
-              class="fa fa-shopping-cart fa-lg"></i></span>
+          <span
+            style="outline: none"
+            class="material-icons cursor-pointer"
+            matTooltip="WishList"
+            routerLink="/cart"
+            [matTooltipPosition]="'above'"
+            matBadge="{{ productService.cartCount }}"
+            matBadgeColor="warn"
+          >
+            <i class="fa fa-shopping-cart fa-lg"></i
+          ></span>
         </div>
       </div>
     </header>
     <div>
-
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
-
 </mat-sidenav-container>
