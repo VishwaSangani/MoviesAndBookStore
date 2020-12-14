@@ -39,7 +39,7 @@
       "yearOfRelease": "2013",
       "releaseDate": "31 May 2013",
       "amount": 425,
-      "quantity": 11,
+      "quantity": 9,
       "description": "Kabir, a guy who wants to make it big in the travel industry, meets Naina during a trekking trip. She falls for him but refrains from expressing it. Years later they meet at a friend's wedding.",
       "trailer": "https://www.youtube.com/embed/JaGcvrl3V5I",
       "imdbRatings": "7.1",
@@ -55,7 +55,7 @@
       "yearOfRelease": "2019",
       "releaseDate": "26 April 2019",
       "amount": 700,
-      "quantity": 9,
+      "quantity": 7,
       "description": "After Thanos, an intergalactic warlord, disintegrates half of the universe, the Avengers must reunite and assemble again to reinvigorate their trounced allies and restore balance.",
       "trailer": "https://www.youtube.com/embed/NQvgsIgs56g",
       "imdbRatings": "8.4",
@@ -416,12 +416,6 @@
       "id": 16
     },
     {
-      "productId": 1,
-      "category": "Movie",
-      "ipAddress": "202.131.103.35",
-      "id": 17
-    },
-    {
       "productId": 2,
       "category": "Book",
       "ipAddress": "202.131.103.35",
@@ -432,6 +426,12 @@
       "category": "Movie",
       "ipAddress": "120.72.90.82",
       "id": 19
+    },
+    {
+      "productId": 1,
+      "category": "Movie",
+      "ipAddress": "202.131.103.35",
+      "id": 20
     }
   ]
 }
