@@ -60,7 +60,6 @@ export class CatalogComponent implements OnInit {
   getIP() {
     this.ip.getIPAddress().subscribe((res: any) => {
       this.ipAddress = res.ip;
-      console.log(res.ip);
       this.loadCartProducts();
     });
   }
